@@ -1,0 +1,16 @@
+{
+  // Tests compile separately from the app: they run in Node under Playwright,
+  // not in the browser bundle, and the Next build must not type-check them.
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": ["node"],
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "paths": {
+      "@/*": ["../src/*"]
+    }
+  },
+  "include": ["**/*.ts", "../playwright.config.ts"],
+  "exclude": []
+}

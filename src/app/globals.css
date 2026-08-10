@@ -1,0 +1,467 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   SMART METAL ERP — DESIGN SYSTEM
+   Dark-first token set. Every colour below is validated:
+   - categorical series slots pass the CVD / lightness / chroma / contrast gates
+     against the real chart surfaces (#131a2b dark, #ffffff light)
+   - text + status tokens clear WCAG 4.5:1 (text) / 3:1 (marks)
+   Theme swaps by overriding the variables under [data-theme="light"] — no
+   `dark:` variants anywhere in the component layer.
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* --- surfaces ------------------------------------------------------- */
+  --bg-base: #080c16; /* app background / page plane */
+  --bg-sunken: #050810; /* wells, inset areas */
+  --bg-surface: #131a2b; /* card surface — the validated chart surface */
+  --bg-surface-2: #1a2338; /* raised: table headers, chips */
+  --bg-surface-3: #232e47; /* hover / active */
+  --bg-overlay: rgba(5, 8, 16, 0.72);
+
+  /* --- borders -------------------------------------------------------- */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.15);
+  --border-accent: rgba(129, 140, 248, 0.45);
+
+  /* --- ink ------------------------------------------------------------ */
+  --text-primary: #f8fafc;
+  --text-secondary: #a9b4c9;
+  --text-muted: #7c8aa5;
+  --text-inverse: #0b1220;
+
+  /* --- brand ---------------------------------------------------------- */
+  --accent: #6366f1;
+  --accent-hover: #818cf8;
+  --accent-soft: rgba(99, 102, 241, 0.16);
+  --accent-ink: #a5b4fc;
+  --accent-fg: #ffffff;
+
+  /* --- status (reserved — never used as a series colour) --------------- */
+  --status-good: #0ca30c;
+  --status-warning: #fab219;
+  --status-serious: #ec835a;
+  --status-critical: #d03b3b;
+  --status-info: #3987e5;
+  --status-neutral: #7c8aa5;
+
+  --status-good-soft: rgba(12, 163, 12, 0.14);
+  --status-warning-soft: rgba(250, 178, 25, 0.14);
+  --status-serious-soft: rgba(236, 131, 90, 0.14);
+  --status-critical-soft: rgba(208, 59, 59, 0.14);
+  --status-info-soft: rgba(57, 135, 229, 0.14);
+  --status-neutral-soft: rgba(124, 138, 165, 0.14);
+
+  /* --- categorical series (dark steps, fixed order, never cycled) ------- */
+  --series-1: #3987e5; /* blue    */
+  --series-2: #d95926; /* orange  */
+  --series-3: #199e70; /* aqua    */
+  --series-4: #c98500; /* yellow  */
+  --series-5: #d55181; /* magenta */
+  --series-6: #008300; /* green   */
+  --series-7: #9085e9; /* violet  */
+  --series-8: #e66767; /* red     */
+
+  /* --- sequential ramp (single hue, light -> dark) ---------------------- */
+  --seq-100: #cde2fb;
+  --seq-200: #9ec5f4;
+  --seq-300: #6da7ec;
+  --seq-400: #3987e5;
+  --seq-500: #256abf;
+  --seq-600: #184f95;
+  --seq-700: #0d366b;
+
+  /* --- chart chrome ---------------------------------------------------- */
+  --chart-grid: #24304a;
+  --chart-axis: #33405e;
+  --chart-label: #8492ad;
+
+  /* --- deltas ---------------------------------------------------------- */
+  --delta-up: #0ca30c;
+  --delta-down: #e66767;
+
+  /* --- elevation ------------------------------------------------------- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px -2px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 18px 48px -12px rgba(0, 0, 0, 0.65);
+
+  /* --- layout metrics --------------------------------------------------- */
+  --sidebar-w: 17rem;
+  --sidebar-w-collapsed: 4.5rem;
+  --topbar-h: 4rem;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  --bg-base: #f6f7fb;
+  --bg-sunken: #eef0f7;
+  --bg-surface: #ffffff;
+  --bg-surface-2: #f4f6fb;
+  --bg-surface-3: #e8ecf5;
+  --bg-overlay: rgba(15, 23, 42, 0.45);
+
+  --border: rgba(11, 18, 32, 0.1);
+  --border-strong: rgba(11, 18, 32, 0.18);
+  --border-accent: rgba(79, 70, 229, 0.45);
+
+  --text-primary: #0b1220;
+  --text-secondary: #4b5666;
+  --text-muted: #6b7688;
+  --text-inverse: #ffffff;
+
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --accent-soft: rgba(79, 70, 229, 0.1);
+  --accent-ink: #4338ca;
+  --accent-fg: #ffffff;
+
+  --status-good: #0a8a0a;
+  --status-warning: #b07800;
+  --status-serious: #c2551f;
+  --status-critical: #c0392f;
+  --status-info: #2a78d6;
+
+  --status-good-soft: rgba(10, 138, 10, 0.1);
+  --status-warning-soft: rgba(176, 120, 0, 0.12);
+  --status-serious-soft: rgba(194, 85, 31, 0.1);
+  --status-critical-soft: rgba(192, 57, 47, 0.1);
+  --status-info-soft: rgba(42, 120, 214, 0.1);
+  --status-neutral-soft: rgba(107, 118, 136, 0.1);
+
+  /* light steps of the same eight hues — validated as a set */
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+  --series-5: #e87ba4;
+  --series-6: #008300;
+  --series-7: #4a3aa7;
+  --series-8: #e34948;
+
+  --chart-grid: #e4e8f0;
+  --chart-axis: #cbd3e1;
+  --chart-label: #6b7688;
+
+  --delta-up: #006300;
+  --delta-down: #c0392f;
+
+  --shadow-sm: 0 1px 2px rgba(11, 18, 32, 0.06);
+  --shadow-md: 0 4px 16px -2px rgba(11, 18, 32, 0.1);
+  --shadow-lg: 0 18px 48px -12px rgba(11, 18, 32, 0.18);
+}
+
+@theme inline {
+  --color-base: var(--bg-base);
+  --color-sunken: var(--bg-sunken);
+  --color-surface: var(--bg-surface);
+  --color-surface-2: var(--bg-surface-2);
+  --color-surface-3: var(--bg-surface-3);
+  --color-overlay: var(--bg-overlay);
+
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-line-accent: var(--border-accent);
+
+  --color-ink: var(--text-primary);
+  --color-ink-2: var(--text-secondary);
+  --color-ink-3: var(--text-muted);
+  --color-ink-inverse: var(--text-inverse);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-fg: var(--accent-fg);
+
+  --color-good: var(--status-good);
+  --color-warning: var(--status-warning);
+  --color-serious: var(--status-serious);
+  --color-critical: var(--status-critical);
+  --color-info: var(--status-info);
+  --color-neutral: var(--status-neutral);
+
+  --color-good-soft: var(--status-good-soft);
+  --color-warning-soft: var(--status-warning-soft);
+  --color-serious-soft: var(--status-serious-soft);
+  --color-critical-soft: var(--status-critical-soft);
+  --color-info-soft: var(--status-info-soft);
+  --color-neutral-soft: var(--status-neutral-soft);
+
+  --color-series-1: var(--series-1);
+  --color-series-2: var(--series-2);
+  --color-series-3: var(--series-3);
+  --color-series-4: var(--series-4);
+  --color-series-5: var(--series-5);
+  --color-series-6: var(--series-6);
+  --color-series-7: var(--series-7);
+  --color-series-8: var(--series-8);
+
+  --color-grid: var(--chart-grid);
+  --color-axis: var(--chart-axis);
+  --color-axis-label: var(--chart-label);
+
+  --color-up: var(--delta-up);
+  --color-down: var(--delta-down);
+
+  --font-sans: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+
+  --shadow-card: var(--shadow-sm);
+  --shadow-pop: var(--shadow-md);
+  --shadow-float: var(--shadow-lg);
+
+  --radius-card: 0.875rem;
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Numbers that line up vertically (table cells, axis ticks) get tabular
+   figures. Hero/stat values deliberately keep proportional figures. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--text-primary);
+}
+
+/* --- focus: always visible, never removed ------------------------------- */
+:focus-visible {
+  outline: 2px solid var(--accent-hover);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* --- scrollbars --------------------------------------------------------- */
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+.scroll-thin::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.scroll-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 99px;
+}
+.scroll-thin::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ==========================================================================
+   UTILITIES
+   ========================================================================== */
+
+.card-surface {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 0.875rem;
+}
+
+/* A very restrained top-edge sheen. Not a gradient fill — the surface stays
+   flat so chart marks keep their validated contrast. */
+.card-sheen {
+  position: relative;
+}
+.card-sheen::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--border-strong),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.hairline-x {
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+/* Live status dot */
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 currentColor;
+    opacity: 0.5;
+  }
+  70% {
+    box-shadow: 0 0 0 6px transparent;
+    opacity: 0;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+    opacity: 0;
+  }
+}
+.pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 99px;
+  animation: pulse-ring 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-rise {
+  animation: fade-rise 0.28s ease-out both;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-surface-2);
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  animation: shimmer 1.6s infinite;
+}
+
+/* Refetch state: hold the previous render at reduced opacity rather than
+   flashing a skeleton (no layout jump). */
+.is-refetching {
+  opacity: 0.55;
+  transition: opacity 0.2s ease;
+}
+
+/* ==========================================================================
+   RECHARTS OVERRIDES
+   ========================================================================== */
+
+.recharts-wrapper:focus,
+.recharts-surface:focus {
+  outline: none;
+}
+.recharts-cartesian-axis-tick-value {
+  font-variant-numeric: tabular-nums;
+}
+.recharts-tooltip-wrapper {
+  outline: none !important;
+  z-index: 30;
+}
+
+/* ==========================================================================
+   ACCESSIBILITY
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .card-surface {
+    border: 1px solid CanvasText;
+  }
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+  .no-print {
+    display: none !important;
+  }
+
+  /*
+   * Document printing. The PI preview portals a `#pi-print-layer` onto <body>
+   * and stamps `data-printing` while it is open, so print can hide the whole
+   * application beside it and let the sheet flow onto the page on its own.
+   */
+  body[data-printing="pi"] {
+    overflow: visible !important;
+  }
+  body[data-printing="pi"] > *:not(#pi-print-layer) {
+    display: none !important;
+  }
+
+  #pi-print-layer {
+    position: static !important;
+    inset: auto !important;
+    z-index: auto !important;
+  }
+  #pi-print-layer .pi-print-scroll {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  #pi-print-layer .pi-sheet-stage {
+    display: block !important;
+    padding: 0 !important;
+  }
+  #pi-print-layer .pi-sheet-scale {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .pi-sheet {
+    width: 210mm !important;
+    min-height: auto !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Backgrounds and rules are part of the document, not decoration — keep them. */
+.pi-sheet {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
